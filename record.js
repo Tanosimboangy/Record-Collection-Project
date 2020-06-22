@@ -60,6 +60,14 @@ let addingRecord = () => {
         recordAlbum.push(newRecord);
 }
 
+const deletingRecord = () => {
+    let recordremove = prompt("Enter the title of the record you want to remove");
+
+        let deletingrecord = recordAlbum.splice(recordremove--, 1);
+        
+        alert(`You deleted ${deletingrecord[recordremove].title}\n `);
+};
+
 let list = `Choose (1) to show all records in the collection,
 Choose (2) to add a new record,
 Choose (3) to update a specific record,
@@ -74,6 +82,10 @@ while (listOfRecords !== 5) {
         recordLists();
     } else if (listOfRecords === 2) {
         addingRecord();
+    } else if (listOfRecords === 3) {
+
+    } else if (listOfRecords === 4) {
+        deletingRecord();
     } else {
         alert("Please enter an appropriate number: 1, 2, 3, 4 or 5");
     }
