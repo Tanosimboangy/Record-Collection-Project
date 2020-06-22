@@ -30,15 +30,6 @@ const recordAlbum = [
 ];
 console.log(recordAlbum[0].Social_media_links);
 
-let list = `Choose (1) to show all records in the collection,
-Choose (2) to add a new record,
-Choose (3) to update a specific record,
-Choose (4) to remove an existing record,
-Choose (5) to quit the program
-`;
-
-let listOfRecords = Number(prompt(list));
-
 let recordLists = () => {
     for (let i = 0; i < recordAlbum.length; i++) {
         let listsrecords = `Title : ${recordAlbum[i].title} \n Artiste Name : ${recordAlbum[i].artiste_name} \n Number of tracks : ${recordAlbum[i].Number_of_track} \n Social media links : ${recordAlbum[i].Social_media_links} \n Release year : ${recordAlbum[i].Release_year}`;
@@ -50,9 +41,13 @@ let recordLists = () => {
 let addingRecord = () => {
     let Title = prompt("Enter the title of the new record");
         let ArtisteName = prompt("Enter the name of the artist of the new record");
-        let NumberOfTracks = prompt("Enter the number of tracks of the new record");
+        let NumberOfTracks = Number(prompt("Enter the number of tracks of the new record"));
         let SocialMedia = prompt("Enter the link on social media of the new record");
         let ReleaseYear = prompt("Enter the year when the record released");
+
+        if (!SocialMedia.startsWith("http://") && !SocialMedia.startsWith("https://")) {
+        SocialMedia = `https://${SocialMedia}`;
+    }
 
         let newRecord = {
             title: Title,
@@ -65,10 +60,22 @@ let addingRecord = () => {
         recordAlbum.push(newRecord);
 }
 
+let list = `Choose (1) to show all records in the collection,
+Choose (2) to add a new record,
+Choose (3) to update a specific record,
+Choose (4) to remove an existing record,
+Choose (5) to quit the program
+`;
+
+let listOfRecords = Number(prompt(list));
+
 while (listOfRecords !== 5) {
     if (listOfRecords === 1) {
         recordLists();
     } else if (listOfRecords === 2) {
         addingRecord();
+    } else {
+        alert("Please enter an appropriate number: 1, 2, 3, 4 or 5");
     }
+    listOfRecords = Number(prompt(list));
 }
